@@ -3761,3 +3761,52 @@
 [2024-12-03T16:18:45.531+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:18:45.531+0000] {dag.py:3096} INFO - Sync 1 DAGs
 [2024-12-03T16:18:45.548+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:18:45.548+0000] {dag.py:3954} INFO - Setting next_dagrun for dbt_run_example to 2024-12-03 00:00:00+00:00, run_after=2024-12-04 00:00:00+00:00
 [2024-12-03T16:18:45.567+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/pipeline.py took 0.086 seconds
+[2024-12-03T16:19:15.869+0000] {processor.py:161} INFO - Started process (PID=10576) to work on /opt/airflow/dags/pipeline.py
+[2024-12-03T16:19:15.871+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/pipeline.py for tasks to queue
+[2024-12-03T16:19:15.872+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:19:15.872+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:19:15.884+0000] {processor.py:840} INFO - DAG(s) 'dbt_run_example' retrieved from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:19:15.917+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:19:15.917+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-12-03T16:19:15.933+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:19:15.933+0000] {dag.py:3954} INFO - Setting next_dagrun for dbt_run_example to 2024-12-03 00:00:00+00:00, run_after=2024-12-04 00:00:00+00:00
+[2024-12-03T16:19:15.945+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/pipeline.py took 0.082 seconds
+[2024-12-03T16:19:46.203+0000] {processor.py:161} INFO - Started process (PID=10597) to work on /opt/airflow/dags/pipeline.py
+[2024-12-03T16:19:46.204+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/pipeline.py for tasks to queue
+[2024-12-03T16:19:46.208+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:19:46.207+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:19:46.226+0000] {processor.py:840} INFO - DAG(s) 'dbt_run_example' retrieved from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:19:46.250+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:19:46.250+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-12-03T16:19:46.262+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:19:46.262+0000] {dag.py:3954} INFO - Setting next_dagrun for dbt_run_example to 2024-12-03 00:00:00+00:00, run_after=2024-12-04 00:00:00+00:00
+[2024-12-03T16:19:46.278+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/pipeline.py took 0.086 seconds
+[2024-12-03T16:20:16.579+0000] {processor.py:161} INFO - Started process (PID=10619) to work on /opt/airflow/dags/pipeline.py
+[2024-12-03T16:20:16.580+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/pipeline.py for tasks to queue
+[2024-12-03T16:20:16.584+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:20:16.583+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:20:16.602+0000] {processor.py:840} INFO - DAG(s) 'dbt_run_example' retrieved from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:20:16.678+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:20:16.678+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-12-03T16:20:16.700+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:20:16.700+0000] {dag.py:3954} INFO - Setting next_dagrun for dbt_run_example to 2024-12-03 00:00:00+00:00, run_after=2024-12-04 00:00:00+00:00
+[2024-12-03T16:20:16.721+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/pipeline.py took 0.155 seconds
+[2024-12-03T16:20:46.919+0000] {processor.py:161} INFO - Started process (PID=10633) to work on /opt/airflow/dags/pipeline.py
+[2024-12-03T16:20:46.921+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/pipeline.py for tasks to queue
+[2024-12-03T16:20:46.925+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:20:46.924+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:20:46.940+0000] {processor.py:840} INFO - DAG(s) 'dbt_run_example' retrieved from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:20:46.962+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:20:46.962+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-12-03T16:20:46.973+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:20:46.972+0000] {dag.py:3954} INFO - Setting next_dagrun for dbt_run_example to 2024-12-03 00:00:00+00:00, run_after=2024-12-04 00:00:00+00:00
+[2024-12-03T16:20:46.984+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/pipeline.py took 0.077 seconds
+[2024-12-03T16:21:17.446+0000] {processor.py:161} INFO - Started process (PID=10655) to work on /opt/airflow/dags/pipeline.py
+[2024-12-03T16:21:17.448+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/pipeline.py for tasks to queue
+[2024-12-03T16:21:17.451+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:21:17.450+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:21:17.467+0000] {processor.py:840} INFO - DAG(s) 'dbt_run_example' retrieved from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:21:17.487+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:21:17.487+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-12-03T16:21:17.498+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:21:17.498+0000] {dag.py:3954} INFO - Setting next_dagrun for dbt_run_example to 2024-12-03 00:00:00+00:00, run_after=2024-12-04 00:00:00+00:00
+[2024-12-03T16:21:17.509+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/pipeline.py took 0.074 seconds
+[2024-12-03T16:21:47.756+0000] {processor.py:161} INFO - Started process (PID=10677) to work on /opt/airflow/dags/pipeline.py
+[2024-12-03T16:21:47.758+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/pipeline.py for tasks to queue
+[2024-12-03T16:21:47.762+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:21:47.761+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:21:47.784+0000] {processor.py:840} INFO - DAG(s) 'dbt_run_example' retrieved from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:21:47.809+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:21:47.808+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-12-03T16:21:47.824+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:21:47.823+0000] {dag.py:3954} INFO - Setting next_dagrun for dbt_run_example to 2024-12-03 00:00:00+00:00, run_after=2024-12-04 00:00:00+00:00
+[2024-12-03T16:21:47.835+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/pipeline.py took 0.089 seconds
+[2024-12-03T16:22:18.196+0000] {processor.py:161} INFO - Started process (PID=10692) to work on /opt/airflow/dags/pipeline.py
+[2024-12-03T16:22:18.198+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/pipeline.py for tasks to queue
+[2024-12-03T16:22:18.200+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:22:18.200+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:22:18.213+0000] {processor.py:840} INFO - DAG(s) 'dbt_run_example' retrieved from /opt/airflow/dags/pipeline.py
+[2024-12-03T16:22:18.231+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:22:18.231+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-12-03T16:22:18.243+0000] {logging_mixin.py:188} INFO - [2024-12-03T16:22:18.243+0000] {dag.py:3954} INFO - Setting next_dagrun for dbt_run_example to 2024-12-03 00:00:00+00:00, run_after=2024-12-04 00:00:00+00:00
+[2024-12-03T16:22:18.257+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/pipeline.py took 0.072 seconds

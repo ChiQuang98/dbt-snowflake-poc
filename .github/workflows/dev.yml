@@ -31,7 +31,7 @@ jobs:
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         run: |
           dbt deps
-          dbt run
+          dbt run --vars "{'SNOWFLAKE_PASSWORD': '${{ secrets.SNOWFLAKE_PASSWORD }}'}"
 
   deploy:
     runs-on: ubuntu-latest
