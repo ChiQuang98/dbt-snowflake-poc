@@ -7,8 +7,6 @@ on:
 
 env:
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-  # SNOWFLAKE_USER: ${{ env.SNOWFLAKE_USER }}
-  # SNOWFLAKE_WAREHOUSE: ${{ env.SNOWFLAKE_WAREHOUSE }}
 
 jobs:
   build-and-test:
@@ -17,12 +15,12 @@ jobs:
       run:
         working-directory: ./dbt
 
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Print environment variable
-        run: echo "The value of MY_VARIABLE is $SNOWFLAKE_PASSWORD"
+        run: echo "The value of SNOWFLAKE_PASSWORD is $SNOWFLAKE_PASSWORD"
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -34,17 +32,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install dbt-snowflake
 
-      - name: Test dbt
+      - name: Run dbt Commands
+        env:
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         run: |
           dbt deps
-          dbt run 
+          dbt run
 
   deploy:
     runs-on: ubuntu-latest
     needs: build-and-test
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Deploy dbt and Airflow DAGs to Dev Server
         run: |
-          # Add your deployment script or commands here
-          echo "Deploying to development server" 
+          echo "Deploying to development server"
+          # Add your actual deployment commands here
