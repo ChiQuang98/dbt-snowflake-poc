@@ -8,6 +8,6 @@ tm_dbt_snowflake:
       schema: DATA_HUB
       threads: 1
       type: snowflake
-      user: "{{ env_var('SNOWFLAKE_USER') }}"
-      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
+      user: tm_di_admin_acct
+      warehouse: TM_DI_WH
   target: dev

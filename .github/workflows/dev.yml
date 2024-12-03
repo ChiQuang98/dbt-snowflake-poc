@@ -7,9 +7,9 @@ on:
 
 env:
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-  SNOWFLAKE_USER: ${{ env.SNOWFLAKE_USER }}
-  SNOWFLAKE_WAREHOUSE: ${{ env.SNOWFLAKE_WAREHOUSE }}
-  
+  # SNOWFLAKE_USER: ${{ env.SNOWFLAKE_USER }}
+  # SNOWFLAKE_WAREHOUSE: ${{ env.SNOWFLAKE_WAREHOUSE }}
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
