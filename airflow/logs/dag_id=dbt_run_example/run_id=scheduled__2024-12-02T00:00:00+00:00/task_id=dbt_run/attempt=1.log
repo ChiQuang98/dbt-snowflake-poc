@@ -1,0 +1,27 @@
+[2024-12-03T09:59:49.102+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-12-03T09:59:49.116+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dbt_run_example.dbt_run scheduled__2024-12-02T00:00:00+00:00 [queued]>
+[2024-12-03T09:59:49.121+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dbt_run_example.dbt_run scheduled__2024-12-02T00:00:00+00:00 [queued]>
+[2024-12-03T09:59:49.121+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-12-03T09:59:49.136+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): dbt_run> on 2024-12-02 00:00:00+00:00
+[2024-12-03T09:59:49.140+0000] {standard_task_runner.py:63} INFO - Started process 468 to run task
+[2024-12-03T09:59:49.144+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dbt_run_example', 'dbt_run', 'scheduled__2024-12-02T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/pipeline.py', '--cfg-path', '/tmp/tmppykagqmh']
+[2024-12-03T09:59:49.145+0000] {standard_task_runner.py:91} INFO - Job 5: Subtask dbt_run
+[2024-12-03T09:59:49.180+0000] {task_command.py:426} INFO - Running <TaskInstance: dbt_run_example.dbt_run scheduled__2024-12-02T00:00:00+00:00 [running]> on host ef89db59771c
+[2024-12-03T09:59:49.222+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dbt_run_example' AIRFLOW_CTX_TASK_ID='dbt_run' AIRFLOW_CTX_EXECUTION_DATE='2024-12-02T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-12-02T00:00:00+00:00'
+[2024-12-03T09:59:49.222+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-12-03T09:59:49.247+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-12-03T09:59:49.248+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/dbt && dbt run']
+[2024-12-03T09:59:49.262+0000] {subprocess.py:86} INFO - Output:
+[2024-12-03T09:59:51.805+0000] {subprocess.py:93} INFO - [0m09:59:51  Running with dbt=1.7.19
+[2024-12-03T09:59:53.865+0000] {subprocess.py:93} INFO - [0m09:59:53  Registered adapter: snowflake=1.7.5
+[2024-12-03T09:59:54.116+0000] {subprocess.py:93} INFO - [0m09:59:54  Found 6 models, 1 test, 5 sources, 0 exposures, 0 metrics, 815 macros, 0 groups, 0 semantic models
+[2024-12-03T09:59:54.122+0000] {subprocess.py:93} INFO - [0m09:59:54
+[2024-12-03T09:59:59.569+0000] {local_task_job_runner.py:310} WARNING - State of this instance has been externally set to success. Terminating instance.
+[2024-12-03T09:59:59.571+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-12-03T09:59:59.573+0000] {process_utils.py:132} INFO - Sending 15 to group 468. PIDs of all processes in the group: [469, 468]
+[2024-12-03T09:59:59.573+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 468
+[2024-12-03T09:59:59.574+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2024-12-03T09:59:59.576+0000] {subprocess.py:104} INFO - Sending SIGTERM signal to process group
+[2024-12-03T09:59:59.578+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-12-03T09:59:59.632+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=468, status='terminated', exitcode=0, started='09:59:48') (468) terminated with exit code 0
+[2024-12-03T09:59:59.633+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=469, status='terminated', started='09:59:48') (469) terminated with exit code None

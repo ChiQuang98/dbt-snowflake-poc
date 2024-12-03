@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: coingecko_source
+    schema: "{{ 'COINGECKO' if target.name == 'prod' else 'COINGECKO' }}"
+    database: "{{ 'CRYPTO_DB' if target.name == 'prod' else 'CRYPTO_DB' }}"
+    tables:
+      - name: COINGECKO_HOURLY_OHLCV_VIEW
+        description: OHLCV hourly data from Coingecko
+      - name: COINGECKO_TOKEN_PRICE_HOURLY_VIEW
+        description: Token price hourly data from Coingecko
+      - name: COINGECKO_TOKENS
+        description: Token meta data from Coingecko
+  - name: tm_analytics_source
+    schema: "{{ 'ANALYTICS' if target.name == 'prod' else 'ANALYTICS' }}"
+    database: "{{ 'TOKENMETRICS_PROD' if target.name == 'prod' else 'TOKENMETRICS_DEV' }}"
+    tables:
+      - name: TRADER_GRADE_V3
+        description: Trader grade data from TM Analytics
+      - name: TRADING_SIGNALS
+        description: Trading signals from TM Analytics
+    

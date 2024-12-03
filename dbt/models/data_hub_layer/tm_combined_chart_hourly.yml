@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: tm_combined_chart_hourly
+    description: Combined chart hourly data from Coingecko and TM Analytics
+    columns:
+      - name: timestamp
+        description: Timestamp of the data
+        type: timestamp
+      - name: token_id
+        description: Token ID
+        type: string
+      - name: token_symbol
+        description: Token symbol
+        type: string
+      - name: token_name
+        description: Token name
+        type: string
+      - name: token_cg_id
+        description: Token CG ID
+        type: string
+      - name: open
+        description: Open price
+        type: float
+      - name: high
+        description: High price
+        type: float
+      - name: low
+        description: Low price
+        type: float
+      - name: close
+        description: Close price
+        type: float
+      - name: volume
+        description: Volume
+        type: float
+      - name: price
+        description: Price
+        type: float
+      - name: market_cap
+        description: Market cap
+        type: float
+      - name: fully_diluted_valuation
+        description: Fully diluted valuation
+        type: float
+      - name: circulating_supply
+        description: Circulating supply
+        type: float
+      - name: trader_grade
+        description: Trader grade
+        type: string
+      - name: signal
+        description: Signal
+        type: string
+      - name: position
+        description: Position
+        type: string
+      - name: holding_cum_roi
+        description: Holding cumulative ROI
+        type: float
+      - name: strategy_cum_roi
+        description: Strategy cumulative ROI
+        type: float
+    tests:
+      - not_null_in_columns:
+          tags: [data_completeness]
+          severity: warn
+          column_names:
+            - timestamp
+            - token_id
