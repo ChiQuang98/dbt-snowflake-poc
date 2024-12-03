@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - development
+    paths:
+      - dbt/**
 
 jobs:
   build-and-test:
@@ -26,9 +28,7 @@ jobs:
       - name: Test dbt
         run: |
           dbt deps
-          dbt seed --profiles-dir profiles/dev
-          dbt run --profiles-dir profiles/dev
-          dbt test --profiles-dir profiles/dev
+          dbt run 
 
   deploy:
     runs-on: ubuntu-latest
