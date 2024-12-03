@@ -27,6 +27,7 @@ jobs:
 
       - name: Test dbt
         run: |
+          cd dbt
           dbt deps
           dbt run 
 
