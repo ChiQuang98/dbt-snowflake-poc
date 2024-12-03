@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - development
-    paths:
-      - dbt/**
+
 
 jobs:
   build-and-test:
