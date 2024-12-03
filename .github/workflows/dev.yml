@@ -12,6 +12,10 @@ jobs:
     defaults:
       run:
         working-directory: ./dbt
+    env:
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_USER: ${{ env.SNOWFLAKE_USER }}
+      SNOWFLAKE_WAREHOUSE: ${{ env.SNOWFLAKE_WAREHOUSE }}
 
     steps:
       - name: Checkout code
