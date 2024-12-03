@@ -10,6 +10,9 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dbt
 
     steps:
       - name: Checkout code
@@ -27,7 +30,6 @@ jobs:
 
       - name: Test dbt
         run: |
-          cd dbt
           dbt deps
           dbt run 
 
