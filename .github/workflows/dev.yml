@@ -30,8 +30,8 @@ jobs:
         env:  # Pass the secret as an environment variable
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         run: |
-          dbt deps --vars "{'SNOWFLAKE_PASSWORD': '${{ secrets.SNOWFLAKE_PASSWORD }}'}"
-          dbt run --vars "{'SNOWFLAKE_PASSWORD': '${{ secrets.SNOWFLAKE_PASSWORD }}'}"
+          dbt deps 
+          dbt run 
 
   deploy:
     runs-on: ubuntu-latest
