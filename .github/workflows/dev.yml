@@ -5,9 +5,6 @@ on:
     branches:
       - development
 
-env:
-  SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -18,9 +15,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set env
-        run: echo ${{ secrets.SNOWFLAKE_PASSWORD }} >> $SNOWFLAKE_PASSWORD
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -33,6 +27,8 @@ jobs:
           pip install dbt-snowflake
 
       - name: Run dbt Commands
+        env:  # Pass the secret as an environment variable
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         run: |
           dbt deps
           dbt run
