@@ -35,9 +35,9 @@ jobs:
 
       # Step 3: Authenticate with Google Cloud
       - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ./credentials/dbt-snowflake-credentials-sa.json
+        run: |
+          gcloud auth activate-service-account --key-file=./credentials/dbt-snowflake-credentials-sa.json
+
       # Step 4: Verify Authentication
       - name: Verify Authentication
         run: gcloud auth list
