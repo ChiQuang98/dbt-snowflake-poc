@@ -18,29 +18,30 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Debug Secret (Do NOT use in production)
-        env:
-          GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
-        run: |
-          echo "$GCP_SERVICE_ACCOUNT_KEY" | base64 --decode
+      # - name: Debug Secret (Do NOT use in production)
+      #   env:
+      #     GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
+      #   run: |
+      #     echo "$GCP_SERVICE_ACCOUNT_KEY" | base64 --decode
       # Step 2: Write the credentials JSON to a temporary file
       - name: Create credentials file from secret
         run: |
           mkdir -p ./credentials
           echo "${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}" | base64 --decode > ./credentials/dbt-snowflake-credentials-sa.json
-
-      # Step 3: Authenticate with Google Cloud using the temp file
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ./credentials/dbt-snowflake-credentials-sa.json
-
-      # Step 3: Set up Google Cloud SDK
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          project_id: token-metrics-389311
-          export_default_credentials: true
+          project_id: token-metrics-389311  # Replace with your GCP Project ID
+          credentials_json: ./credentials/dbt-snowflake-credentials-sa.json
+
+      # Step 3: Authenticate with Google Cloud
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ./credentials/dbt-snowflake-credentials-sa.json
+      # Step 4: Verify Authentication
+      - name: Verify Authentication
+        run: gcloud auth list
 
       # - name: Retrieve dbt manifest from GCS 
 
