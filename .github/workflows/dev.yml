@@ -48,9 +48,10 @@ jobs:
       - name: Install dbt
         run: |
           python -m pip install --upgrade pip
-          pip install dbt-snowflake
+          pip install dbt-snowflake==1.7.5
       - name: Run SlimCI for DBT 
         run: |
+          dbt deps
           dbt build --target ci --select state:modified+ --defer --state ./state
 
  
