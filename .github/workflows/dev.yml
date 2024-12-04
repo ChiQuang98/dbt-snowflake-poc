@@ -32,7 +32,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: token-metrics-389311  # Replace with your GCP Project ID
-          credentials_json: ./credentials/dbt-snowflake-credentials-sa.json
 
       # Step 3: Authenticate with Google Cloud
       - name: Authenticate with Google Cloud
