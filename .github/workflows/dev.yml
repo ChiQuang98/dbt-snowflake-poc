@@ -6,7 +6,7 @@ on:
       - development
 
 env:
-  ENVIRONMENT: DEVELOPMENT
+  ENVIRONMENT: development
         #   env:  # Pass the secret as an environment variable
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
