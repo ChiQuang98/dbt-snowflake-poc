@@ -18,6 +18,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Debug Secret (Do NOT use in production)
+        env:
+          GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
+        run: |
+          echo "$GCP_SERVICE_ACCOUNT_KEY" | jq
       # Step 2: Write the credentials JSON to a temporary file
       - name: Create credentials file from secret
         run: |
