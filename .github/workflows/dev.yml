@@ -18,11 +18,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      # Step 2: Authenticate with Google Cloud
+      # Step 2: Write the credentials JSON to a temporary file
+      - name: Create credentials file
+        run: |
+          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" > /tmp/credentials.json
+
+      # Step 3: Authenticate with Google Cloud using the temp file
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          credentials_json: /tmp/credentials.json
 
       # Step 3: Set up Google Cloud SDK
       - name: Set up Google Cloud SDK
