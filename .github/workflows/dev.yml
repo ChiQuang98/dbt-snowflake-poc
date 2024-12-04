@@ -19,9 +19,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       # Step 2: Write the credentials JSON to a temporary file
-      - name: Create credentials file
-        run: |
-          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" > /tmp/credentials.json
+      - name: Create Google Services JSON File
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
+        run: echo $GOOGLE_APPLICATION_CREDENTIALS | base64 -di > /tmp/credentials.json
 
       # Step 3: Authenticate with Google Cloud using the temp file
       - name: Authenticate to Google Cloud
