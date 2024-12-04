@@ -19,16 +19,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       # Step 2: Write the credentials JSON to a temporary file
-      - name: Create Google Services JSON File
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
-        run: echo $GOOGLE_APPLICATION_CREDENTIALS | base64 -di > /tmp/credentials.json
+      - name: Create credentials file from secret
+        run: |
+          mkdir -p ./credentials
+          echo "${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}" | base64 --decode > ./credentials/dbt-snowflake-credentials-sa.json
 
       # Step 3: Authenticate with Google Cloud using the temp file
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: /tmp/credentials.json
+          credentials_json: ./credentials/dbt-snowflake-credentials-sa.json
 
       # Step 3: Set up Google Cloud SDK
       - name: Set up Google Cloud SDK
