@@ -60,11 +60,10 @@ jobs:
           else
             echo "manifest.json not found, running all models"
             dbt build --target ci
-            cp target/manifest.json ./state/
           fi
       - name: Upload manifest to GCS
         run: |
-          gsutil cp ./state/manifest.json gs://tm-dbt-snowflake/${ENVIRONMENT}/
+          gsutil cp target/manifest.json gs://tm-dbt-snowflake/${ENVIRONMENT}/
 
   deploy:
     runs-on: ubuntu-latest

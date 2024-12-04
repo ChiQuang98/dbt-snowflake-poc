@@ -13,3 +13,18 @@ Runtime Error
 [0m17:36:37.824746 [debug] [MainThread]: Command `dbt build` failed at 17:36:37.824655 after 0.05 seconds
 [0m17:36:37.825014 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106e8ea10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110d46a40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110d46fe0>]}
 [0m17:36:37.825242 [debug] [MainThread]: Flushing usage events
+[0m20:44:11.915299 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106aa1630>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108617d60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108616fb0>]}
+
+
+============================== 20:44:11.918092 | aeea0652-b373-4152-8696-f2f095c64031 ==============================
+[0m20:44:11.918092 [info ] [MainThread]: Running with dbt=1.7.19
+[0m20:44:11.918431 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/Users/chiquang/.dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt build --target dev --select state:modified+ --defer --state=.', 'send_anonymous_usage_stats': 'True'}
+[0m20:44:11.918884 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/chiquang/Documents/project/Token_metrics/tm-data-pipeline-poc/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m20:44:11.920337 [debug] [MainThread]: Resource report: {"command_name": "build", "command_wall_clock_time": 0.03902475, "process_user_time": 0.925558, "process_kernel_time": 0.09839, "process_mem_max_rss": "99368960", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m20:44:11.920685 [debug] [MainThread]: Command `dbt build` failed at 20:44:11.920608 after 0.04 seconds
+[0m20:44:11.920903 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x106aa1630>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108616a10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108616fb0>]}
+[0m20:44:11.921102 [debug] [MainThread]: Flushing usage events
