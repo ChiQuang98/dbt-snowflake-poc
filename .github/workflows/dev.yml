@@ -22,7 +22,7 @@ jobs:
       - name: Create credentials file from secret
         run: |
           mkdir -p ./credentials
-          echo "${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}"  > ./credentials/dbt-snowflake-credentials-sa.json
+          echo "${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}" | base64 --decode > ./credentials/dbt-snowflake-credentials-sa.json
 
       # Step 3: Authenticate with Google Cloud using the temp file
       - name: Authenticate to Google Cloud
