@@ -6,7 +6,7 @@ tm_dbt_snowflake:
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role: ACCOUNTADMIN
       schema: DATA_HUB
-      threads: 1
+      threads: 5
       type: snowflake
       user: tm_di_admin_acct
       warehouse: TM_DI_WH
@@ -16,7 +16,7 @@ tm_dbt_snowflake:
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role: ACCOUNTADMIN
       schema: CI
-      threads: 1
+      threads: 5
       type: snowflake
       user: tm_di_admin_acct
       warehouse: TM_DI_WH
