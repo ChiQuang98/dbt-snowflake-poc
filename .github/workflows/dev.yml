@@ -5,8 +5,8 @@ on:
     branches:
       - development
 
-env:
-  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
+# env:
+#   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
 
 jobs:
   build-and-test:
