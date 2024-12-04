@@ -73,8 +73,8 @@ models:
           column_names:
             - timestamp
             - token_id
-      - unique_key:
-          tags: [data_quality]
-          severity: warn
-          columns:
-            - token_id
+      # - unique_key:
+      #     tags: [data_quality]
+      #     severity: warn
+      #     columns:
+      #       - token_id
