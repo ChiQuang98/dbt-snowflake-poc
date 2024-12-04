@@ -55,6 +55,7 @@ jobs:
         run: |
           dbt deps
           if [ -f ./state/manifest.json ]; then
+            echo "manifest.json found, running modified models"
             dbt build --target ci --select state:modified+ --defer --state ./state
           else
             echo "manifest.json not found, running all models"
@@ -64,27 +65,6 @@ jobs:
       - name: Upload manifest to GCS
         run: |
           gsutil cp ./state/manifest.json gs://tm-dbt-snowflake/${ENVIRONMENT}/
-
- 
-
-      # - name: Retrieve dbt manifest from GCS 
-
-      # - name: Set up Python
-      #   uses: actions/setup-python@v2
-      #   with:
-      #     python-version: '3.8'
-
-      # - name: Install dbt
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install dbt-snowflake
-
-      # - name: Run dbt Commands
-      #   env:  # Pass the secret as an environment variable
-      #     SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-      #   run: |
-      #     dbt deps 
-      #     dbt run 
 
   deploy:
     runs-on: ubuntu-latest
