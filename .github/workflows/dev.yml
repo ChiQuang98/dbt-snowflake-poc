@@ -18,12 +18,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      # Step 2: Set up Google Cloud SDK and authenticate
+      # Step 2: Authenticate with Google Cloud
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+
+      # Step 3: Set up Google Cloud SDK
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
-          # project_id: <PROJECT_ID>
-          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          project_id: token-metrics-389311
           export_default_credentials: true
 
       # - name: Retrieve dbt manifest from GCS 
