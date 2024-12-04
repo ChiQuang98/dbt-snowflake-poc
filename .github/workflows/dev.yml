@@ -5,8 +5,8 @@ on:
     branches:
       - development
 
-# env:
-#   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
+env:
+  ENVIRONMENT: DEVELOPMENT
 
 jobs:
   build-and-test:
@@ -32,11 +32,14 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: token-metrics-389311  # Replace with your GCP Project ID
-
       # Step 3: Authenticate with Google Cloud
       - name: Authenticate with Google Cloud
         run: |
           gcloud auth activate-service-account --key-file=./credentials/dbt-snowflake-credentials-sa.json
+      - name: Get dbt Manifest
+        run: |
+          mkdir state
+          gcloud storage cp gs://token-metrics-389311/tm-dbt-snowflake/${ENVIRONMENT}/manifest.json ./state/manifest.json
 
       # Step 4: Verify Authentication
       - name: Verify Authentication
