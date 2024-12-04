@@ -15,7 +15,7 @@ tm_dbt_snowflake:
       database: CRYPTO_DB_DEV
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role: ACCOUNTADMIN
-      schema: DATA_HUB
+      schema: CI
       threads: 1
       type: snowflake
       user: tm_di_admin_acct

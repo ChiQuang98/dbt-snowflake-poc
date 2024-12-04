@@ -52,7 +52,13 @@ jobs:
       - name: Run SlimCI for DBT 
         run: |
           dbt deps
-          dbt build --target ci --select state:modified+ --defer --state ./state
+          if [ -f ./state/manifest.json ]; then
+            dbt build --target ci --select state:modified+ --defer --state ./state
+          else
+            echo "manifest.json not found, running all models"
+            dbt build --target ci
+            cp target/manifest.json ./state/
+          fi
 
  
 
