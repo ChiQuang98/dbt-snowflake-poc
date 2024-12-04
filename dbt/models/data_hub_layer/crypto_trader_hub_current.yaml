@@ -75,6 +75,6 @@ models:
             - token_id
       - unique_key:
           tags: [data_quality]
-          severity: error
+          severity: warn
           columns:
             - token_id

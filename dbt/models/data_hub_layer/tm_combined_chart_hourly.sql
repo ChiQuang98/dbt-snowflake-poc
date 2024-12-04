@@ -34,7 +34,7 @@ WITH ohlcv_hourly_incremental AS (
     {% endif %}
 ), trading_signal_incremental AS (
     SELECT * FROM {{ ref('stg_trading_signals') }}
-    {% if target.name == 'dev' or target.name == 'ci' %}
+    {% if is_incremental() %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
     {% if target.name == 'dev' or target.name == 'ci' %}
