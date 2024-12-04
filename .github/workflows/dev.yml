@@ -39,7 +39,7 @@ jobs:
       - name: Get dbt Manifest
         run: |
           mkdir state
-          gcloud storage cp gs://token-metrics-389311/tm-dbt-snowflake/${ENVIRONMENT}/manifest.json ./state/manifest.json
+          gcloud storage cp gs://tm-dbt-snowflake/${ENVIRONMENT}/manifest.json ./state/manifest.json
 
       # Step 4: Verify Authentication
       - name: Verify Authentication
