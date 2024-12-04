@@ -39,7 +39,7 @@ jobs:
       - name: Get dbt Manifest
         run: |
           mkdir state
-          gcloud storage cp gs://tm-dbt-snowflake/${ENVIRONMENT}/manifest.json ./state/manifest.json
+          gcloud storage cp gs://tm-dbt-snowflake/${ENVIRONMENT}/manifest1.json ./state/manifest.json || echo "File does not exist. Skipping..."
 
       # Step 4: Verify Authentication
       - name: Verify Authentication
