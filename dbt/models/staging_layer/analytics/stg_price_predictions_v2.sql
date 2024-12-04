@@ -7,3 +7,7 @@
 
 SELECT * FROM {{ source('tm_analytics_source', 'PRICE_PREDICTIONS_V2')  }}
 QUALIFY ROW_NUMBER() OVER (PARTITION BY TOKEN_ID, DATE ORDER BY DATE DESC) = 1
+
+{% if target.name == 'dev' or target.name == 'ci' %}
+    limit 2
+{% endif %}

@@ -13,7 +13,7 @@ WITH ohlcv_hourly_incremental AS (
     {% if is_incremental() %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
-    {% if target.name == 'dev' %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         limit 2
     {% endif %}
 ), token_price_hourly_incremental AS (
@@ -21,7 +21,7 @@ WITH ohlcv_hourly_incremental AS (
     {% if is_incremental() %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
-    {% if target.name == 'dev' %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         limit 2
     {% endif %}
 ), trader_grade_v3_incremental AS (
@@ -29,15 +29,15 @@ WITH ohlcv_hourly_incremental AS (
     {% if is_incremental() %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
-    {% if target.name == 'dev' %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         limit 2
     {% endif %}
 ), trading_signal_incremental AS (
     SELECT * FROM {{ ref('stg_trading_signals') }}
-    {% if is_incremental() %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
-    {% if target.name == 'dev' %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         limit 2
     {% endif %}
 )
