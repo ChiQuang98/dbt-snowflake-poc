@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: crypto_trader_hub_hist
+    description: Full Hub with historical data for traders
+    columns:
+      - name: token_id
+      - name: token_name
+      - name: token_symbol
+      - name: cg_id
+      - name: token_url
+      - name: is_stablecoin
+      - name: exchange_list
+      - name: category_list
+      - name: date
+      - name: tm_trader_grade
+      - name: tm_trader_grade_24h_pct_change
+      - name: ta_grade
+      - name: ta_grade_24h_pct_change
+      - name: quant_grade
+      - name: quant_grade_24h_pct_change
+      - name: all_time_return
+      - name: max_drawdown
+      - name: cagr
+      - name: sharpe
+      - name: sortino
+      - name: volatility
+      - name: skew
+      - name: kurtosis
+      - name: daily_value_at_risk
+      - name: expected_shortfall_cvar
+      - name: profit_factor
+      - name: tail_ratio
+      - name: daily_return_avg
+      - name: daily_return_std
+      - name: trading_signal
+      - name: token_trend
+      - name: trading_signals_returns
+      - name: holding_returns
+      - name: forecasts_for_next_7_days
+      - name: predicted_returns_7d
+
+    tests:
+      - not_null_in_columns:
+          tags: [data_completeness]
+          severity: warn
+          column_names:
+            - date
+            - token_id
+      - dbt_utils.unique_combination_of_columns:
+          tags: [data_quality]
+          severity: error
+          combination_of_columns:
+            - date
+            - token_id

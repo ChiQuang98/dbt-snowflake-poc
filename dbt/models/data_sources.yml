@@ -1,0 +1,68 @@
+version: 2
+
+sources:
+  - name: coingecko_source
+    schema: "{{ 'COINGECKO' if target.name == 'prod' else 'COINGECKO' }}"
+    database: "{{ 'CRYPTO_DB' if target.name == 'prod' else 'CRYPTO_DB' }}"
+    tables:
+      - name: COINGECKO_HOURLY_OHLCV_VIEW
+        description: OHLCV hourly data from Coingecko source
+      - name: COINGECKO_TOKEN_PRICE_HOURLY_VIEW
+        description: Token price hourly data from Coingecko source
+      - name: COINGECKO_TOKENS
+        description: Token meta data from Coingecko
+      - name: COINGECKO_ALL_PRICE_DATA_VIEW
+        description: token price daily data from Coingecko source
+      - name: COINGECKO_PRICE_DAILY_SUMMARY_VIEW_V2
+        description: token price daily summary data from Coingecko source
+      - name: COINGECKO_EXCHANGES_ORIGINAL_VIEW
+        description: token exchanges data from Coingecko source
+      - name: COINGECKO_TOKEN_CATEGORIES
+        description: token categories data from Coingecko source
+      - name: COINGECKO_CATEGORIES
+        description: categories data from Coingecko source
+  - name: tm_analytics_source
+    schema: "{{ 'ANALYTICS' if target.name == 'prod' else 'ANALYTICS' }}"
+    database: "{{ 'TOKENMETRICS_PROD' if target.name == 'prod' else 'TOKENMETRICS_DEV' }}"
+    tables:
+      - name: TRADER_GRADE_V3
+        description: Trader grade data from TM Analytics
+      - name: TRADING_SIGNALS
+        description: Trading signals from TM Analytics
+      - name: TM_GRADES
+        description: TM grades from TM Analytics
+      - name: TECHNICAL_COMBINED_INDICATOR
+        description: Technical combined indicator from TM Analytics
+      - name: TM_INVESTOR_GRADES
+        description: Investor grades from TM Analytics
+      - name: PRICE_PREDICTIONS_V2
+        description: Price predictions from TM Analytics
+      - name: RESISTANCE_SUPPORT
+        description: Resistance and support from TM Analytics
+      - name: TA_GRADES
+        description: TA grades for all available tokens from TM Analytics
+      - name: QUANT_GRADES_V2
+        description: Quant grades for all available tokens from TM Analytics
+      - name: APP_CONFIG
+        description: App config from TM Analytics
+      - name: TM_TRADER_GRADES_V2
+        description: TM trader grades v2 from TM Analytics
+      - name: PRICE_PREDICTIONS_RETURNS_V2
+        description: Price prediction v2 weekly returns for all coins from TM Analytics
+      - name: RISK_REWARD_RATIO
+        description: Table for the risk reward ratio, calculated daily from TM Analytics
+      - name: SCENARIO_ANALYSIS
+        description: Scenario Analysis predictions for all tokens from TM Analytics
+      - name: CORRELATION_TOP
+        description: top 10 and bottom 10 correlation of all tokens with the top 100 market cap from TM Analytics
+      - name: PRICE_PREDICTIONS_V3
+        description: Price predictions v3 from TM Analytics
+  - name: tm_reference_source
+    schema: "{{ 'DEFILLAMA' if target.name == 'prod' else 'DEFILLAMA' }}"
+    database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tables:
+      - name: AGGREGATED_TOKENS_TVL
+        description: Aggregated tokens TVL from TM Reference DB
+      - name: CHAINS_TVL_VIEW
+        description: Chains TVL from TM Reference DB
+

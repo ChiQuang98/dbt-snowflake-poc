@@ -5,6 +5,9 @@ on:
     branches:
       - development
 
+env:
+  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -15,23 +18,32 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      # Step 2: Set up Google Cloud SDK and authenticate
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
         with:
-          python-version: '3.8'
+          # project_id: <PROJECT_ID>
+          service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          export_default_credentials: true
 
-      - name: Install dbt
-        run: |
-          python -m pip install --upgrade pip
-          pip install dbt-snowflake
+      # - name: Retrieve dbt manifest from GCS 
 
-      - name: Run dbt Commands
-        env:  # Pass the secret as an environment variable
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-        run: |
-          dbt deps 
-          dbt run 
+      # - name: Set up Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: '3.8'
+
+      # - name: Install dbt
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install dbt-snowflake
+
+      # - name: Run dbt Commands
+      #   env:  # Pass the secret as an environment variable
+      #     SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      #   run: |
+      #     dbt deps 
+      #     dbt run 
 
   deploy:
     runs-on: ubuntu-latest
