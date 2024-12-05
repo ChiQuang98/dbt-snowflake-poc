@@ -62,4 +62,5 @@ select
     coalesce(trader.category_list, investor.category_list) as category_list
 from {{ ref('crypto_investor_hub_hist') }} investor 
 full outer join {{ ref('crypto_trader_hub_hist') }} trader using (token_id, date)
+limit 1
 

@@ -25,18 +25,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check for changes in the airflow folder
-        id: check_airflow_changes
+      - name: do something
         run: |
-          git fetch origin ${{ github.base_ref }}:base-branch
-          if git diff --quiet base-branch HEAD -- airflow/; then
-            echo "changes=false" >> $GITHUB_ENV
-          else
-            echo "changes=true" >> $GITHUB_ENV
-          fi
+          echo "do something"
+      # - name: Check for changes in the airflow folder
+      #   id: check_airflow_changes
+      #   run: |
+      #     git fetch origin ${{ github.base_ref }}:base-branch
+      #     if git diff --quiet base-branch HEAD -- airflow/; then
+      #       echo "changes=false" >> $GITHUB_ENV
+      #     else
+      #       echo "changes=true" >> $GITHUB_ENV
+      #     fi
 
-      - name: Deploy Airflow DAGs to Dev Server
-        if: ${{ env.changes == 'true' }}
-        run: |
-          echo "Deploying to development server"
-          # Add your actual deployment commands here
+      # - name: Deploy Airflow DAGs to Dev Server
+      #   if: ${{ env.changes == 'true' }}
+      #   run: |
+      #     echo "Deploying to development server"
+      #     # Add your actual deployment commands here
