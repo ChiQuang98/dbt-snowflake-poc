@@ -11,6 +11,7 @@ on:
     paths:
       #only run if there are changes in dbt folder
       - "dbt/**"
+      - ".github/workflows/**"
   # push:
   #   branches:
   #     - development
@@ -19,7 +20,7 @@ on:
   #     - "dbt/**"
 
 env:
-  ENVIRONMENT: ${{ github.base_ref }}
+  # ENVIRONMENT: ${{ github.base_ref }}
         #   env:  # Pass the secret as an environment variable
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
@@ -33,11 +34,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      # - name: Debug Secret (Do NOT use in production)
-      #   env:
-      #     GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}
-      #   run: |
-      #     echo "$GCP_SERVICE_ACCOUNT_KEY" | base64 --decode
+
+      - name: Set ENVIRONMENT variable
+        run: |
+          cd ..
+          if [ "${{ github.base_ref }}" == "development" ]; then
+            echo "ENVIRONMENT=development" >> $GITHUB_ENV
+          else
+            echo "ENVIRONMENT=production" >> $GITHUB_ENV
+          fi
       # Step 2: Write the credentials JSON to a temporary file
       - name: Create credentials file from secret
         run: |
@@ -75,9 +80,9 @@ jobs:
             echo "manifest.json not found, running all models"
             dbt build --target ci
           fi
-      - name: Upload manifest to GCS
-        run: |
-          gsutil cp target/manifest.json gs://tm-dbt-snowflake/${ENVIRONMENT}/
+      # - name: Upload manifest to GCS
+      #   run: |
+      #     gsutil cp target/manifest.json gs://tm-dbt-snowflake/${ENVIRONMENT}/
 
   # deploy:
   #   if: ${{ github.event_name == 'push' }} # Ensure this job runs only on push events (after merge)
