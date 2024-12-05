@@ -77,7 +77,7 @@ jobs:
       
       - name: Upload DBT docs to Page artifact
         id: build
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           path: dbt/dbt-docs
           name: dbt-docs
