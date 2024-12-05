@@ -3,7 +3,7 @@ name: Deploy Airflow/DBT to development env
 on:
   push:
     branches:
-      - development
+      - development-andrew
     # paths:
     #   #only run if there are changes in dbt folder
     #   - "dbt/**"
