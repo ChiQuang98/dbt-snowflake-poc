@@ -27,9 +27,9 @@ env:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: ./dbt
+    defaults:
+      run:
+        working-directory: ./dbt
 
     steps:
       - name: Checkout code
@@ -37,6 +37,7 @@ jobs:
 
       - name: Set ENVIRONMENT variable
         run: |
+          cd ..
           if [ "${{ github.base_ref }}" == "development" ]; then
             echo "ENVIRONMENT=development" >> $GITHUB_ENV
           else
@@ -57,7 +58,6 @@ jobs:
           gcloud auth activate-service-account --key-file=./credentials/dbt-snowflake-credentials-sa.json
       - name: Get dbt Manifest
         run: |
-          cd dbt
           mkdir state
           gcloud storage cp gs://tm-dbt-snowflake/${ENVIRONMENT}/manifest.json ./state/manifest.json || echo "File does not exist. Skipping..."
       - name: Set up Python
