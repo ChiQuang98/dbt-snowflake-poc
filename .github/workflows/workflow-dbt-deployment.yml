@@ -19,10 +19,58 @@ env:
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
 jobs:
-  dbt-ci:
-    name: "dbt-slim-ci"
-    uses: ./.github/workflows/dbt-slim-ci.yml
-    secrets: inherit
+  build-and-test-dbt:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dbt
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set ENVIRONMENT variable
+        run: |
+          cd ..
+          if [ "${{ github.base_ref }}" == "development" ]; then
+            echo "ENVIRONMENT=development" >> $GITHUB_ENV
+          else
+            echo "ENVIRONMENT=production" >> $GITHUB_ENV
+          fi
+      # Step 2: Write the credentials JSON to a temporary file
+      - name: Create credentials file from secret
+        run: |
+          mkdir -p ./credentials
+          echo "${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}" | base64 --decode > ./credentials/dbt-snowflake-credentials-sa.json
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: token-metrics-389311  # Replace with your GCP Project ID
+      # Step 3: Authenticate with Google Cloud
+      - name: Authenticate with Google Cloud
+        run: |
+          gcloud auth activate-service-account --key-file=./credentials/dbt-snowflake-credentials-sa.json
+      # - name: Get dbt Manifest
+      #   run: |
+      #     mkdir state
+      #     gcloud storage cp gs://tm-dbt-snowflake/${ENVIRONMENT}/manifest.json ./state/manifest.json || echo "File does not exist. Skipping..."
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install dbt
+        run: |
+          python -m pip install --upgrade pip
+          pip install dbt-snowflake==1.7.5
+      - name: Generate manifest file 
+        run: |
+          echo $ENVIRONMENT
+          dbt deps
+          dbt docs generate --target CI
+      - name: Upload manifest to GCS
+        run: |
+          gsutil cp target/manifest.json gs://tm-dbt-snowflake/${ENVIRONMENT}/
 
   deploy-airflow-dbt-to-server:
     runs-on: ubuntu-latest
