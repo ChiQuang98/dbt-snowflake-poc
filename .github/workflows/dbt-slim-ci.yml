@@ -57,6 +57,7 @@ jobs:
           gcloud auth activate-service-account --key-file=./credentials/dbt-snowflake-credentials-sa.json
       - name: Get dbt Manifest
         run: |
+          cd dbt
           mkdir state
           gcloud storage cp gs://tm-dbt-snowflake/${ENVIRONMENT}/manifest.json ./state/manifest.json || echo "File does not exist. Skipping..."
       - name: Set up Python
@@ -71,7 +72,6 @@ jobs:
       - name: Run SlimCI for DBT 
         run: |
           echo $ENVIRONMENT
-          cd dbt
           dbt deps
           if [ -f ./state/manifest.json ]; then
             echo "manifest.json found, running modified models"
