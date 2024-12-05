@@ -34,9 +34,10 @@ jobs:
         run: |
           if [ "${{ github.base_ref }}" == "main" ]; then
               echo "ENVIRONMENT=production" >> $GITHUB_ENV
-          else [ "${{ github.base_ref }}" == "development" ]; then
+          elif [ "${{ github.base_ref }}" == "development" ]; then
               echo "ENVIRONMENT=development" >> $GITHUB_ENV
           fi
+          echo $ENVIRONMENT
       - name: Checkout code
         uses: actions/checkout@v2
       # - name: Debug Secret (Do NOT use in production)
