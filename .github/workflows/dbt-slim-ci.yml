@@ -7,6 +7,7 @@ on:
       - synchronize
     branches:
       - development
+      - main
     paths:
       #only run if there are changes in dbt folder
       - "dbt/**"
@@ -18,7 +19,6 @@ on:
   #     - "dbt/**"
 
 env:
-  ENVIRONMENT: development
         #   env:  # Pass the secret as an environment variable
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
@@ -30,6 +30,13 @@ jobs:
         working-directory: ./dbt
 
     steps:
+      - name: Set ENVIRONMENT variable
+        run: |
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "ENVIRONMENT=production" >> $GITHUB_ENV
+          elif [[ "${{ github.ref_name }}" == "development" ]]; then
+            echo "ENVIRONMENT=development" >> $GITHUB_ENV
+          fi
       - name: Checkout code
         uses: actions/checkout@v2
       # - name: Debug Secret (Do NOT use in production)
