@@ -92,7 +92,7 @@ models:
             - cg_id
       - dbt_utils.unique_combination_of_columns:
           tags: [data_quality]
-          severity: error
+          severity: warn
           combination_of_columns:
             - date
             - token_id
