@@ -73,13 +73,13 @@ jobs:
         id: docs 
         run: |
           dbt deps
-          dbt docs generate --target-path ./dbt-docs --target ci
+          dbt docs generate --target-path dbt-docs --target ci
       
       - name: Upload DBT docs to Page artifact
         id: build
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dbt-docs
+          path: dbt/dbt-docs
           name: dbt-docs
       - name: Publish DBT docs to Github Pages
         id: deployment
