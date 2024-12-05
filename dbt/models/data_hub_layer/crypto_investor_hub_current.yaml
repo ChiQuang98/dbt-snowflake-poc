@@ -1,0 +1,147 @@
+version: 2
+
+models:
+  - name: crypto_investor_hub_current
+    description: Current data for crypto investors
+    columns:
+      - name: date
+        description: Date of the data
+        type: date
+      - name: timestamp
+        description: Timestamp of the data
+        type: timestamp
+      - name: token_id
+        description: Token ID of the token from CoinGecko
+        type: string
+      - name: token_name
+        description: Token name from CoinGecko
+        type: string
+      - name: token_symbol
+        description: Token symbol from CoinGecko
+        type: string
+      - name: cg_id
+        description: CoinGecko ID
+        type: string
+      - name: token_url
+        description: Token URL
+        type: string
+      - name: is_stablecoin
+        description: Is stablecoin
+        type: boolean
+      - name: summary
+        description: Summary of the token
+        type: string
+      - name: images
+        description: Images of the token
+        type: string
+      - name: platforms
+        description: Platforms of the token
+        type: string
+      - name: explorer
+        description: Explorer of the token
+        type: string
+      - name: all_time_high
+        description: All time high of the token
+        type: float
+      - name: community_score
+        description: Community score of the token
+        type: float
+      - name: defi_usage_score
+        description: DeFi usage score of the token
+        type: float
+      - name: tokenomics_score
+        description: Tokenomics score of the token
+        type: float
+      - name: vc_score
+        description: VC score of the token
+        type: float
+      - name: exchange_score
+        description: Exchange score of the token
+        type: float
+      - name: onchain_score
+        description: Onchain score of the token
+        type: float
+      - name: fundamental_grade
+        description: Fundamental grade of the token
+        type: float
+      - name: fundamental_grade_7d_pct_change
+        description: Fundamental grade 7d pct change of the token
+        type: float
+      - name: fundraising_metrics
+        description: Fundraising metrics of the token
+        type: string
+      - name: liquidity_metrics
+        description: Liquidity metrics of the token
+        type: string
+      - name: liquiditypools
+        description: Liquidity pools of the token
+        type: string
+      - name: creator_metrics
+        description: Creator metrics of the token
+        type: string
+      - name: holder_metrics
+        description: Holder metrics of the token
+        type: string
+      - name: fundamental_issues
+        description: Fundamental issues of the token
+        type: string
+      - name: liquidity_issues
+        description: Liquidity issues of the token
+        type: string
+      - name: holder_issues
+        description: Holder issues of the token
+        type: string
+      - name: defi_scanner_metrics
+        description: DeFi scanner metrics of the token
+        type: string
+      - name: technology_issues
+        description: Technology issues of the token
+        type: string
+      - name: defi_scanner_score
+        description: DeFi scanner score of the token
+        type: float
+      - name: security_score
+        description: Security score of the token
+        type: float
+      - name: activity_score
+        description: Activity score of the token
+        type: float
+      - name: repository_score
+        description: Repository score of the token
+        type: float
+      - name: collaboration_score
+        description: Collaboration score of the token
+        type: float
+      - name: technology_grade
+        description: Technology grade of the token
+        type: float
+      - name: technology_grade_7d_pct_change
+        description: Technology grade 7d pct change of the token
+        type: float
+      - name: github_metrics
+        description: Github metrics of the token
+        type: string
+      - name: valuation_grade
+        description: Valuation grade of the token
+        type: float
+      - name: valuation_grade_7d_pct_change
+        description: Valuation grade 7d pct change of the token
+        type: float
+      - name: valuation_metrics
+        description: Valuation metrics of the token
+        type: string
+    tests:
+      - not_null_in_columns:
+          tags: [data_completeness]
+          severity: warn
+          column_names:
+            - timestamp
+            - token_id
+            - cg_id
+      - dbt_utils.unique_combination_of_columns:
+          tags: [data_quality]
+          severity: error
+          combination_of_columns:
+            - timestamp
+            - token_id
+

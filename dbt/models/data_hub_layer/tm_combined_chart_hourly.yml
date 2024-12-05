@@ -64,7 +64,7 @@ models:
     tests:
       - not_null_in_columns:
           tags: [data_completeness]
-          severity: warn
+          severity: error
           column_names:
             - timestamp
             - token_id

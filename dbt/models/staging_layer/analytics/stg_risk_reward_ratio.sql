@@ -1,7 +1,7 @@
 {{
   config(
-    materialized = 'view',
-    tags = ['staging_layer']
+    materialized = 'ephemeral',
+    tags = ['staging_layer', 'tm_analytics']
   )
 }}
 

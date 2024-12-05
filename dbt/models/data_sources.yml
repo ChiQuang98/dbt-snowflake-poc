@@ -4,6 +4,8 @@ sources:
   - name: coingecko_source
     schema: "{{ 'COINGECKO' if target.name == 'prod' else 'COINGECKO' }}"
     database: "{{ 'CRYPTO_DB' if target.name == 'prod' else 'CRYPTO_DB' }}"
+    tags:
+      - coingecko
     tables:
       - name: COINGECKO_HOURLY_OHLCV_VIEW
         description: OHLCV hourly data from Coingecko source
@@ -21,9 +23,13 @@ sources:
         description: token categories data from Coingecko source
       - name: COINGECKO_CATEGORIES
         description: categories data from Coingecko source
+      - name: COINGECKO_TOKENS_LIVE_PRICE_FRONT
+        description: Latest market price data from Coingecko source
   - name: tm_analytics_source
     schema: "{{ 'ANALYTICS' if target.name == 'prod' else 'ANALYTICS' }}"
     database: "{{ 'TOKENMETRICS_PROD' if target.name == 'prod' else 'TOKENMETRICS_DEV' }}"
+    tags:
+      - tm_analytics
     tables:
       - name: TRADER_GRADE_V3
         description: Trader grade data from TM Analytics
@@ -57,12 +63,89 @@ sources:
         description: top 10 and bottom 10 correlation of all tokens with the top 100 market cap from TM Analytics
       - name: PRICE_PREDICTIONS_V3
         description: Price predictions v3 from TM Analytics
-  - name: tm_reference_source
+      - name: TECHNOLOGY_GRADES
+        description: Technology  grades for all available projects from TM Analytics
+      - name: FUNDAMENTAL_GRADES
+        description: Fundamental grades for all available projects from TM Analytics
+      - name: FUNDAMENTAL_COMMUNITY_SCORE
+        description: Fundamental community score from TM Analytics
+      - name: FUNDAMENTAL_DEFI_USAGE_SCORE
+        description: Fundamental defi usage score from TM Analytics
+      - name: FUNDAMENTAL_TOKENOMICS_SCORE
+        description: Fundamental tokenomics score from TM Analytics
+      - name: FUNDAMENTAL_VC_SCORE
+        description: Fundamental vc score from TM Analytics
+      - name: FUNDAMENTAL_EXCHANGE_SCORE
+        description: Fundamental exchange score from TM Analytics
+      - name: FUNDAMENTAL_ONCHAIN_SCORE
+        description: Fundamental onchain score from TM Analytics
+      - name: VALUATION_GRADES
+        description: Valuation grades from TM Analytics
+  - name: tm_reference_defillama_source
     schema: "{{ 'DEFILLAMA' if target.name == 'prod' else 'DEFILLAMA' }}"
     database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tags:
+      - tm_reference
     tables:
       - name: AGGREGATED_TOKENS_TVL
         description: Aggregated tokens TVL from TM Reference DB
       - name: CHAINS_TVL_VIEW
         description: Chains TVL from TM Reference DB
+  - name: tm_reference_github_source
+    schema: "{{ 'GITHUB' if target.name == 'prod' else 'GITHUB' }}"
+    database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tags:
+      - tm_reference
+    tables:
+      - name: GITHUB_STATS
+        description: Need to filled here
+  - name: tm_reference_reddit_source
+    schema: "{{ 'REDDIT' if target.name == 'prod' else 'REDDIT' }}"
+    database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tags:
+      - tm_reference
+    tables:
+      - name: CRYPTO_SUBREDDIT_STATS
+        description: Need to filled here
+  - name: tm_reference_telegram_source
+    schema: "{{ 'TELEGRAM' if target.name == 'prod' else 'TELEGRAM' }}"
+    database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tags:
+      - tm_reference
+    tables:
+      - name: CRYPTO_TELEGRAM_STATS
+        description: Need to filled here
+  - name: tm_reference_twitter_source
+    schema: "{{ 'TWITTER' if target.name == 'prod' else 'TWITTER' }}"
+    database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tags:
+      - tm_reference
+    tables:
+      - name: CRYPTO_TWITTER_STATS
+        description: Crypto twitter stats from TM Reference DB
+  - name: tm_reference_ahrefs_source
+    schema: "{{ 'AHREFS' if target.name == 'prod' else 'AHREFS' }}"
+    database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tags:
+      - tm_reference
+    tables:
+      - name: CRYPTO_WEBSITE_STATS
+        description: Crypto website stats from TM Reference DB
+  - name: tm_reference_cryptofundraising_source
+    schema: "{{ 'CRYPTOFUNDRAISING' if target.name == 'prod' else 'CRYPTOFUNDRAISING' }}"
+    database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tags:
+      - tm_reference
+    tables:
+      - name: CRYPTO_FUNDRAISING_STATS
+        description: Crypto fundraising stats from TM Reference DB
+  - name: tm_reference_defi_source
+    schema: "{{ 'DEFI' if target.name == 'prod' else 'DEFI' }}"
+    database: "{{ 'TM_REFERENCE_DB' if target.name == 'prod' else 'TM_REFERENCE_DB' }}"
+    tags:
+      - tm_reference
+    tables:
+      - name: CRYPTO_DEFI_STATS
+        description: Crypto defi stats from TM Reference DB
+
 

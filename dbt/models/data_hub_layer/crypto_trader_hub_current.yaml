@@ -8,9 +8,23 @@ models:
         description: Date of the data
       - name: timestamp
       - name: token_id
+        tests:
+          - unique:
+              config:
+                severity: error
+          - not_null:
+              config:
+                severity: error
       - name: token_name
       - name: token_symbol
       - name: cg_id
+        tests:
+          - unique:
+              config:
+                severity: error
+          - not_null:
+              config:
+                severity: error
       - name: token_url
       - name: is_stablecoin
       - name: summary
@@ -73,8 +87,4 @@ models:
           column_names:
             - timestamp
             - token_id
-      # - unique_key:
-      #     tags: [data_quality]
-      #     severity: warn
-      #     columns:
-      #       - token_id
+

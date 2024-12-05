@@ -1,5 +1,6 @@
 tm_dbt_snowflake:
   outputs:
+    # target = dev: build all models with limits to save computation resources
     dev:
       account: bta69289.us-east-1
       database: CRYPTO_DB_DEV
@@ -10,6 +11,7 @@ tm_dbt_snowflake:
       type: snowflake
       user: tm_di_admin_acct
       warehouse: TM_DI_WH
+    # target = ci: build all models without limits to save computation resources in C
     ci:
       account: bta69289.us-east-1
       database: CRYPTO_DB_DEV
@@ -20,4 +22,28 @@ tm_dbt_snowflake:
       type: snowflake
       user: tm_di_admin_acct
       warehouse: TM_DI_WH
+    # target = prod: build all models without limits and for production schema.
+    prod:
+      account: bta69289.us-east-1
+      database: CRYPTO_DB_DEV
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      schema: DATA_HUB
+      threads: 5
+      type: snowflake
+      user: tm_di_admin_acct
+      warehouse: TM_DI_WH
+    # target = full_dev: build all models without limits 
+    full_dev:
+      account: bta69289.us-east-1
+      database: CRYPTO_DB_DEV
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ACCOUNTADMIN
+      schema: DATA_HUB
+      threads: 5
+      type: snowflake
+      user: tm_di_admin_acct
+      warehouse: TM_DI_WH
+    #you can define target = full_prod to bu
+  
   target: dev

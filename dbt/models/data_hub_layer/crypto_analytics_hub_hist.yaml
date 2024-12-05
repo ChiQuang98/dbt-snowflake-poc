@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: crypto_analytics_hub_hist
+    description: Historical data for crypto analytics
+    columns:
+      - name: date
+        description: Date
+        type: date
+      - name: token_id
+        description: Token ID
+        type: string
+      - name: token_name
+        description: Token name
+        type: string
+      - name: tm_trader_grade
+        description: Trader grade
+        type: float
+      - name: tm_trader_grade_24h_pct_change
+        description: Trader grade 24h pct change
+        type: float
+      - name: ta_grade
+        description: Technical analysis grade
+        type: float
+      - name: fundamental_grade
+        description: Fundamental grade
+        type: float
+      - name: fundamental_grade_7d_pct_change
+        description: Fundamental grade 7d pct change
+        type: float
+      - name: technology_grade
+        description: Technology grade
+        type: float
+      - name: max_drawdown
+        description: Max drawdown
+        type: float
+      - name: cagr
+        description: CAGR
+        type: float
+      - name: sharpe
+        description: Sharpe
+        type: float
+      - name: daily_value_at_risk
+        description: Daily value at risk
+        type: float
+      - name: expected_shortfall_cvar
+        description: Expected shortfall CVaR
+        type: float
+      - name: profit_factor
+        description: Profit factor
+        type: float
+      - name: tail_ratio
+        description: Tail ratio
+        type: float
+      - name: daily_return_avg
+        description: Daily return avg
+        type: float
+      - name: daily_return_std
+        description: Daily return std
+        type: float
+      - name: trading_signal
+        description: Trading signal
+        type: float
+      - name: token_trend
+        description: Token trend
+        type: float
+      - name: trading_signals_returns
+        description: Trading signals returns
+        type: float
+      - name: holding_returns
+        description: Holding returns
+        type: float
+      - name: forecasts_for_next_7_days
+        description: Forecasts for next 7 days
+        type: float
+      - name: predicted_returns_7d
+        description: Predicted returns 7d
+        type: float
+      - name: community_score
+        description: Community score
+        type: float
+      - name: exchange_score
+        description: Exchange score
+        type: float
+      - name: onchain_score
+        description: Onchain score
+        type: float
+      - name: vc_score
+        description: VC score
+        type: float
+      - name: defi_scanner_score
+        description: Defi scanner score
+        type: float
+      - name: security_score
+        description: Security score
+        type: float
+      - name: activity_score
+        description: Activity score
+        type: float
+    tests:
+      - not_null_in_columns:
+          tags: [data_completeness]
+          severity: warn
+          column_names:
+            - date
+            - token_id
+            - cg_id
+      - dbt_utils.unique_combination_of_columns:
+          tags: [data_quality]
+          severity: error
+          combination_of_columns:
+            - date
+            - token_id
+
