@@ -1,0 +1,59 @@
+name: Deploy Airflow/DBT to server
+
+on:
+  push:
+    branches:
+      - development
+      - main
+    paths:
+      #only run if there are changes in dbt folder
+      - "dbt/**"
+
+
+env:
+  # you should channge env to production, but leave it developme
+  # ENVIRONMENT: ${{ github.base_ref }}
+  ENVIRONMENT: if [ "${{ github.base_ref }}" == "development" ]; then echo "development"; else echo "production"; fi
+        #   env:  # Pass the secret as an environment variable
+  SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+
+jobs:
+  deploy-airflow-dbt-to-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for changes in airflow and dbt folders
+        id: check_changes
+        run: |
+          git fetch origin ${{ github.base_ref }}:base-branch
+          # Check for changes in `airflow`
+          if git diff --quiet base-branch HEAD -- airflow/; then
+            echo "airflow_changed=false" >> $GITHUB_ENV
+          else
+            echo "airflow_changed=true" >> $GITHUB_ENV
+          fi
+          # Check for changes in `dbt`
+          if git diff --quiet base-branch HEAD -- dbt/; then
+            echo "dbt_changed=false" >> $GITHUB_ENV
+          else
+            echo "dbt_changed=true" >> $GITHUB_ENV
+          fi
+
+      - name: Deploy Changes for Airflow and DBT
+        run: |
+          if [ "${{ env.airflow_changed }}" == "true" ]; then
+            echo "Deploying changes for airflow folder..."
+            # Add Airflow deployment commands here
+          else
+            echo "No changes detected in airflow folder."
+          fi
+
+          if [ "${{ env.dbt_changed }}" == "true" ]; then
+            echo "Deploying changes for dbt folder..."
+            # Add DBT deployment commands here
+          else
+            echo "No changes detected in dbt folder."
+          fi
