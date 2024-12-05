@@ -77,13 +77,13 @@ jobs:
       
       - name: Upload DBT docs to Page artifact
         id: build
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: dbt-docs
           name: dbt-docs
       - name: Publish DBT docs to Github Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v3
         with:
           artifact_name: dbt-docs
 
