@@ -80,9 +80,9 @@ jobs:
             echo "manifest.json not found, running all models"
             dbt build --target ci
           fi
-      - name: Upload manifest to GCS
-        run: |
-          gsutil cp target/manifest.json gs://tm-dbt-snowflake/${ENVIRONMENT}/
+      # - name: Upload manifest to GCS
+      #   run: |
+      #     gsutil cp target/manifest.json gs://tm-dbt-snowflake/${ENVIRONMENT}/
 
   # deploy:
   #   if: ${{ github.event_name == 'push' }} # Ensure this job runs only on push events (after merge)

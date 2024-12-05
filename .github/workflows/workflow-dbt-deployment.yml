@@ -19,10 +19,19 @@ env:
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
 jobs:
+  dbt-ci:
+    name: "dbt-slim-ci"
+    uses: ./.github/workflows/dbt-slim-ci.yml
+    secrets: inherit
+
   deploy-airflow-dbt-to-server:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./dbt
     steps:
+
+
       - name: Checkout code
         uses: actions/checkout@v2
 
