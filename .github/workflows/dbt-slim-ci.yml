@@ -30,14 +30,12 @@ jobs:
         working-directory: ./dbt
 
     steps:
-      - name: Set ENVIRONMENT variable
+      - name: Set ENVIRONMENT variable based on target branch
         run: |
-          if [[ "${{ github.head_ref }}" == "main" ]]; then
+          if [[ "${{ github.base_ref }}" == "main" ]]; then
             echo "ENVIRONMENT=production" >> $GITHUB_ENV
-          elif [[ "${{ github.head_ref }}" == "development" ]]; then
+          else [[ "${{ github.base_ref }}" == "development" ]]; then
             echo "ENVIRONMENT=development" >> $GITHUB_ENV
-          else
-            echo "ENVIRONMENT=unknown" >> $GITHUB_ENV
           fi
       - name: Checkout code
         uses: actions/checkout@v2
