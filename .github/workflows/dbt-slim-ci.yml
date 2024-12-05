@@ -18,7 +18,7 @@ on:
   #   paths:
   #     #only run if there are changes in dbt folder
   #     - "dbt/**"
-
+#Need to make only one PR can run this workflow at a time
 env:
   # ENVIRONMENT: ${{ github.base_ref }}
         #   env:  # Pass the secret as an environment variable
