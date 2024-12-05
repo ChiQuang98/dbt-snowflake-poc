@@ -32,7 +32,7 @@ jobs:
       - name: Set ENVIRONMENT variable
         run: |
           cd ..
-          if [ "${{ github.event.pull_request.base.ref }}" == "development" ]; then
+          if [ "${{ github.ref_name }}" == "development" ]; then
             echo "ENVIRONMENT=development" >> $GITHUB_ENV
           else
             echo "ENVIRONMENT=production" >> $GITHUB_ENV
