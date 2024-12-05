@@ -1,0 +1,42 @@
+name: Deploy Airflow/DBT to development env
+
+on:
+  push:
+    branches:
+      - development
+    # paths:
+    #   #only run if there are changes in dbt folder
+    #   - "dbt/**"
+
+env:
+  # you should channge env to production, but leave it developme
+  ENVIRONMENT: development
+        #   env:  # Pass the secret as an environment variable
+  SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+
+jobs:
+  #run this job only if there are changes in dbt folder
+  deploy-dbt:
+
+    runs-on: ubuntu-latest
+    needs: build-and-test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check for changes in the airflow folder
+        id: check_airflow_changes
+        run: |
+          git fetch origin ${{ github.base_ref }}:base-branch
+          if git diff --quiet base-branch HEAD -- airflow/; then
+            echo "changes=false" >> $GITHUB_ENV
+          else
+            echo "changes=true" >> $GITHUB_ENV
+          fi
+
+      - name: Deploy Airflow DAGs to Dev Server
+        if: ${{ env.changes == 'true' }}
+        run: |
+          echo "Deploying to development server"
+          # Add your actual deployment commands here
