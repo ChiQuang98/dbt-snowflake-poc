@@ -8,12 +8,13 @@ on:
     paths:
       #only run if there are changes in dbt folder
       - "dbt/**"
+      - ".github/workflows/**"
 
 
 env:
   # you should channge env to production, but leave it developme
   # ENVIRONMENT: ${{ github.base_ref }}
-  ENVIRONMENT: if [ "${{ github.base_ref }}" == "development" ]; then echo "development"; else echo "production"; fi
+  # ENVIRONMENT: if [ "${{ github.base_ref }}" == "development" ]; then echo "development"; else echo "production"; fi
         #   env:  # Pass the secret as an environment variable
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
