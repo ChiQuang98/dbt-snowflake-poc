@@ -16,7 +16,7 @@ env:
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
 jobs:
-  deploy:
+  deploy-airflow-dbt-to-server:
     runs-on: ubuntu-latest
 
     steps:
