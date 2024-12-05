@@ -1,5 +1,3 @@
-/*VERSION DATE WHO DESCRIPTION*/
-
 {{
   config(
     materialized = 'incremental',
@@ -9,12 +7,13 @@
   )
 }}
 
+
 WITH ohlcv_hourly_incremental AS (
     SELECT * FROM {{ ref('stg_coingecko_ohlcv_hourly') }}
     {% if is_incremental() %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
-    {% if target.name == 'dev' %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         limit 2
     {% endif %}
 ), token_price_hourly_incremental AS (
@@ -22,7 +21,7 @@ WITH ohlcv_hourly_incremental AS (
     {% if is_incremental() %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
-    {% if target.name == 'dev' %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         limit 2
     {% endif %}
 ), trader_grade_v3_incremental AS (
@@ -30,15 +29,15 @@ WITH ohlcv_hourly_incremental AS (
     {% if is_incremental() %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
-    {% if target.name == 'dev' %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         limit 2
     {% endif %}
 ), trading_signal_incremental AS (
-    SELECT * FROM {{ ref('stg_trading_signal') }}
+    SELECT * FROM {{ ref('stg_trading_signals') }}
     {% if is_incremental() %}
         WHERE TIMESTAMP >= (SELECT MAX(TIMESTAMP) FROM {{ this }})
     {% endif %}
-    {% if target.name == 'dev' %}
+    {% if target.name == 'dev' or target.name == 'ci' %}
         limit 2
     {% endif %}
 )
@@ -46,7 +45,7 @@ WITH ohlcv_hourly_incremental AS (
         TIMESTAMP,
         TOKEN_ID,
         TOKENS.NAME,
-        UPPER(TOKENS.SYMBOL) as TOKEN_SYMBOL,
+        TOKEN_SYMBOL,
         TOKENS.CG_ID,
         OHLCV.OPEN,
         OHLCV.HIGH,
@@ -70,7 +69,7 @@ WITH ohlcv_hourly_incremental AS (
     -- joining on Trading signals
     LEFT OUTER JOIN trading_signal_incremental AS SIGNAL using (token_id, timestamp)
     -- joining proper symbol, cg_id and name
-    LEFT OUTER JOIN (SELECT ID AS TOKEN_ID, NAME, SYMBOL, CG_ID FROM {{ ref('stg_coingecko_tokens') }}) AS TOKENS using(token_id)
+    LEFT OUTER JOIN {{ ref('stg_coingecko_tokens') }} AS TOKENS using(token_id)
     order by timestamp 
 {% if target.name == 'dev' %}
     limit 2

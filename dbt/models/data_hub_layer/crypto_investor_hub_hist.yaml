@@ -1,0 +1,99 @@
+version: 2
+
+models:
+  - name: crypto_investor_hub_hist
+    description: Historical data for crypto investors
+    columns:
+      - name: token_id
+        description: Token ID
+        type: string
+      - name: token_name
+        description: Token name
+        type: string
+      - name: token_symbol
+        description: Token symbol
+        type: string
+      - name: cg_id
+        description: CoinGecko ID
+        type: string
+      - name: token_url
+        description: Token URL
+        type: string
+      - name: is_stablecoin
+        description: Is stablecoin
+        type: boolean
+      - name: exchange_list
+        description: Exchange list
+        type: string
+      - name: category_list
+        description: Category list
+        type: string
+      - name: tm_investor_grade
+        description: TM Investor grade
+        type: string
+      - name: tm_investor_grade_7d_pct_change
+        description: TM Investor grade 7d pct change
+        type: string
+      - name: community_score
+        description: Community score
+        type: string
+      - name: defi_usage_score
+        description: Defi usage score
+        type: string
+      - name: tokenomics_score
+        description: Tokenomics score
+        type: string
+      - name: vc_score
+        description: VC score
+        type: string
+      - name: exchange_score
+        description: Exchange score
+        type: string
+      - name: onchain_score
+        description: Onchain score
+        type: string
+      - name: fundamental_grade
+        description: Fundamental grade
+        type: string
+      - name: defi_scanner_score
+        description: Defi scanner score
+        type: string
+      - name: security_score
+        description: Security score
+        type: string
+      - name: activity_score
+        description: Activity score
+        type: string
+      - name: repository_score
+        description: Repository score
+        type: string
+      - name: collaboration_score
+        description: Collaboration score
+        type: string
+      - name: technology_grade
+        description: Technology grade
+        type: string
+      - name: technology_grade_7d_pct_change
+        description: Technology grade 7d pct change
+        type: string
+      - name: valuation_grade
+        description: Valuation grade
+        type: string
+      - name: valuation_grade_7d_pct_change
+        description: Valuation grade 7d pct change
+        type: string
+    tests:
+      - not_null_in_columns:
+          tags: [data_completeness]
+          severity: warn
+          column_names:
+            - date
+            - token_id
+            - cg_id
+      - dbt_utils.unique_combination_of_columns:
+          tags: [data_quality]
+          severity: warn
+          combination_of_columns:
+            - date
+            - token_id
+

@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: tm_combined_chart_view
+    description: TM combined chart data
+    columns:
+      - name: date
+        description: Date of the data
+        type: date
+      - name: token_id
+        description: Token id
+        type: string
+      - name: name
+        description: Name of the token
+        type: string
+      - name: token_symbol
+        description: Symbol of the token
+        type: string
+      - name: cg_id
+        description: Coingecko id
+        type: string
+      - name: open
+        description: Open price of the token
+        type: float
+      - name: high
+        description: High price of the token
+        type: float
+      - name: low
+        description: Low price of the token
+        type: float
+      - name: close
+        description: Close price of the token
+        type: float
+      - name: volume
+        description: Volume of the token
+        type: float
+      - name: market_cap
+        description: Market cap of the token
+        type: float
+      - name: fully_diluted_valuation
+        description: Fully diluted valuation of the token
+        type: float
+      - name: circulating_supply
+        description: Circulating supply of the token
+        type: float
+      - name: tm_grade
+        description: TM grade of the token
+        type: string
+      - name: tm_investor_grade
+        description: TM investor grade of the token
+        type: string
+      - name: signal
+        description: Signal of the token
+        type: string
+      - name: holding_cumulative_roi
+        description: Holding cumulative ROI of the token
+        type: float
+      - name: strategy_cumulative_roi
+        description: Strategy cumulative ROI of the token
+        type: float
+      - name: forecast
+        description: Forecast of the token
+        type: float
+      - name: forecast_upper
+        description: Forecast upper of the token
+    # tests:
+    #   - not_null_in_columns:
+    #       tags: [data_completeness]
+    #       severity: warn
+    #       column_names:
+    #         - date
+    #         - token_id
+    #         - cg_id
+    #   - dbt_utils.unique_combination_of_columns:
+    #       tags: [data_quality]
+    #       severity: warn
+    #       combination_of_columns:
+    #         - date
+    #         - token_id
+

@@ -1,0 +1,297 @@
+version: 2
+
+models:
+  - name: crypto_info_hub_current_top_100_view
+    description: Current top 100 data for crypto info
+    columns:
+      - name: token_id
+        description: Token ID
+        type: string
+      - name: date
+        description: Date
+        type: timestamp
+      - name: timestamp
+        description: Timestamp
+        type: timestamp
+      - name: token_name
+        description: Token name
+        type: string
+      - name: token_symbol
+        description: Token symbol
+        type: string
+      - name: cg_id
+        description: Coingecko ID
+        type: string
+      - name: token_url
+        description: Token URL
+        type: string
+      - name: is_stablecoin
+        description: Is stablecoin
+        type: boolean
+      - name: summary
+        description: Summary
+        type: string
+      - name: images
+        description: Images
+        type: string
+      - name: platforms
+        description: Platforms
+        type: string
+      - name: explorer
+        description: Explorer
+        type: string
+      - name: all_time_high
+        description: All time high
+        type: float
+      - name: all_time_low
+        description: All time low
+        type: float
+      - name: launch_date
+        description: Launch date
+        type: timestamp
+      - name: tm_trader_grade
+        description: Trader grade
+        type: string
+      - name: tm_trader_grade_24h_pct_change
+        description: Trader grade 24h pct change
+        type: float
+      - name: quant_grade
+        description: Quant grade
+        type: string
+      - name: quant_grade_24h_pct_change
+        description: Quant grade 24h pct change
+        type: float
+      - name: tm_investor_grade
+        description: Investor grade
+        type: string
+      - name: technology_grade_7d_pct_change
+        description: Technology grade 7d pct change
+        type: float
+      - name: valuation_grade
+        description: Valuation grade
+        type: string
+      - name: valuation_grade_7d_pct_change
+        description: Valuation grade 7d pct change
+        type: float
+      - name: valuation_metrics
+        description: Valuation metrics
+        type: string
+      - name: all_time_return
+        description: All time return
+        type: float
+      - name: max_drawdown
+        description: Max drawdown
+        type: float
+      - name: cagr
+        description: CAGR
+        type: float
+      - name: sharpe
+        description: Sharpe
+        type: float
+      - name: sortino
+        description: Sortino
+        type: float
+      - name: volatility
+        description: Volatility
+        type: float
+      - name: skew
+        description: Skew
+        type: float
+      - name: kurtosis
+        description: Kurtosis
+        type: float
+      - name: daily_value_at_risk
+        description: Daily value at risk
+        type: float
+      - name: expected_shortfall_cvar
+        description: Expected shortfall CVAR
+        type: float
+      - name: profit_factor
+        description: Profit factor
+        type: float
+      - name: tail_ratio
+        description: Tail ratio
+        type: float
+      - name: daily_return_avg
+        description: Daily return avg
+        type: float
+      - name: daily_return_std
+        description: Daily return std
+        type: float
+      - name: tvl
+        description: TVL
+        type: float
+      - name: tvl_percent_change
+        description: TVL percent change
+        type: float
+      - name: trading_signal
+        description: Trading signal
+        type: string
+      - name: last_trading_signal
+        description: Last trading signal
+        type: string
+      - name: token_trend_hourly
+        description: Token trend hourly
+        type: string
+      - name: trading_signals_returns_hourly
+        description: Trading signals returns hourly
+        type: string
+      - name: holding_returns_hourly
+        description: Holding returns hourly
+        type: string
+      - name: forecasts_for_next_7_days
+        description: Forecasts for next 7 days
+        type: string
+      - name: predicted_returns_7d
+        description: Predicted returns 7d
+        type: string
+      - name: scenario_prediction
+        description: Scenario prediction
+        type: string
+      - name: liquidity_metrics
+        description: Liquidity metrics
+        type: string
+      - name: liquiditypools
+        description: Liquidity pools
+        type: string
+      - name: creator_metrics
+        description: Creator metrics
+        type: string
+      - name: holder_metrics
+        description: Holder metrics
+        type: string
+      - name: defi_scanner_metrics
+        description: Defi scanner metrics
+        type: string
+      - name: historical_resistance_support_levels
+        description: Historical resistance support levels
+        type: string
+      - name: current_resistance_level
+        description: Current resistance level
+        type: float
+      - name: current_support_level
+        description: Current support level
+        type: float
+      - name: risk_reward_ratio
+        description: Risk reward ratio
+        type: float
+      - name: current_dominance
+        description: Current dominance
+        type: float
+      - name: scenario_analysis
+        description: Scenario analysis
+        type: string
+      - name: top_correlation
+        description: Top correlation
+        type: string
+      - name: liquidity_issues
+        description: Liquidity issues
+        type: string
+      - name: holder_issues
+        description: Holder issues
+        type: string
+      - name: fundamental_issues
+        description: Fundamental issues
+        type: string
+      - name: defi_usage_score
+        description: Defi usage score
+        type: float
+      - name: community_score
+        description: Community score
+        type: float
+      - name: exchange_score
+        description: Exchange score
+        type: float
+      - name: vc_score
+        description: VC score
+        type: float
+      - name: onchain_score
+        description: Onchain score
+        type: float
+      - name: tokenomics_score
+        description: Tokenomics score
+        type: float
+      - name: reddit_metrics
+        description: Reddit metrics
+        type: string
+      - name: twitter_metrics
+        description: Twitter metrics
+        type: string
+      - name: telegram_metrics
+        description: Telegram metrics
+        type: string
+      - name: website_metrics
+        description: Website metrics
+        type: string
+      - name: fundraising_metrics
+        description: Fundraising metrics
+        type: string
+      - name: defi_scanner_score
+        description: Defi scanner score
+        type: float
+      - name: security_score
+        description: Security score
+        type: float
+      - name: activity_score
+        description: Activity score
+        type: float
+      - name: repository_score
+        description: Repository score
+        type: float
+      - name: collaboration_score
+        description: Collaboration score
+        type: float
+      - name: technology_issues
+        description: Technology issues
+        type: string
+      - name: github_metrics
+        description: Github metrics
+        type: string
+      - name: exchange_list
+        description: Exchange list
+        type: string
+      - name: category_list
+        description: Category list
+        type: string
+      - name: volume_24h_pct_change
+        description: Volume 24h pct change
+        type: float
+      - name: fdv_24h_pct_change
+        description: Circulating supply 24h pct change
+        type: float
+      - name: current_price
+        description: Current price
+        type: float
+      - name: volume_24h
+        description: Volume 24h
+        type: float
+      - name: market_cap
+        description: Market cap
+        type: float
+      - name: fully_diluted_valuation
+        description: Fully diluted valuation
+        type: float
+      - name: high_24h
+        description: High 24h
+        type: float
+      - name: low_24h
+        description: Low 24h
+        type: float
+      - name: price_change_percentage
+        description: Price change percentage
+        type: float
+    # tests:
+    #   - not_null_in_columns:
+    #       tags: [data_completeness]
+    #       severity: warn
+    #       column_names:
+    #         - date
+    #         - token_id
+    #         - cg_id
+    #   - dbt_utils.unique_combination_of_columns:
+    #       tags: [data_quality]
+    #       severity: warn
+    #       combination_of_columns:
+    #         - date
+    #         - token_id
+
