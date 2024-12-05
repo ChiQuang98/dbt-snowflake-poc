@@ -34,10 +34,8 @@ jobs:
         run: |
           if [ "${{ github.base_ref }}" == "main" ]; then
               echo "ENVIRONMENT=production" >> $GITHUB_ENV
-          elif [ "${{ github.base_ref }}" == "development" ]; then
+          else [ "${{ github.base_ref }}" == "development" ]; then
               echo "ENVIRONMENT=development" >> $GITHUB_ENV
-          else
-              echo "ENVIRONMENT=unknown" >> $GITHUB_ENV
           fi
       - name: Checkout code
         uses: actions/checkout@v2
@@ -49,6 +47,7 @@ jobs:
       # Step 2: Write the credentials JSON to a temporary file
       - name: Create credentials file from secret
         run: |
+          working-directory: ./dbt
           mkdir -p ./credentials
           echo "${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}" | base64 --decode > ./credentials/dbt-snowflake-credentials-sa.json
       - name: Set up Google Cloud SDK
