@@ -25,9 +25,9 @@ env:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: ./dbt
+    defaults:
+      run:
+        working-directory: ./dbt
 
     steps:
       - name: Set ENVIRONMENT variable based on target branch
@@ -73,7 +73,6 @@ jobs:
           pip install dbt-snowflake==1.7.5
       - name: Run SlimCI for DBT 
         run: |
-          working-directory: ./dbt
           dbt deps
           if [ -f ./state/manifest.json ]; then
             echo "manifest.json found, running modified models"
