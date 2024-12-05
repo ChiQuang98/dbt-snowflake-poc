@@ -31,6 +31,7 @@ jobs:
 
     steps:
       - name: Set ENVIRONMENT variable based on target branch
+        shell: bash
         run: |
           if [ "${{ github.base_ref }}" == "main" ]; then
               echo "ENVIRONMENT=production" >> $GITHUB_ENV
