@@ -48,7 +48,6 @@ jobs:
       # Step 2: Write the credentials JSON to a temporary file
       - name: Create credentials file from secret
         run: |
-          working-directory: ./dbt
           mkdir -p ./credentials
           echo "${{ secrets.DBT_SNOWFLAKE_SERVICE_ACCOUNT_KEY }}" | base64 --decode > ./credentials/dbt-snowflake-credentials-sa.json
       - name: Set up Google Cloud SDK
@@ -74,6 +73,7 @@ jobs:
           pip install dbt-snowflake==1.7.5
       - name: Run SlimCI for DBT 
         run: |
+          working-directory: ./dbt
           dbt deps
           if [ -f ./state/manifest.json ]; then
             echo "manifest.json found, running modified models"
