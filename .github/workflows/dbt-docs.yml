@@ -9,8 +9,8 @@ on:
       - "dbt/**"
 
 env:
-  ENVIRONMENT: development
-        #   env:  # Pass the secret as an environment variable
+  ENVIRONMENT: production
+#   env:  # Pass the secret as an environment variable
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
 
 #Sets permissions of the GITHUB_TOKEN to allow deployment to Github Pages
@@ -73,7 +73,7 @@ jobs:
         id: docs 
         run: |
           dbt deps
-          dbt docs generate --target-path dbt-docs --target ci
+          dbt docs generate --target-path dbt-docs --target prod
       
       - name: Upload DBT docs to Page artifact
         id: build
