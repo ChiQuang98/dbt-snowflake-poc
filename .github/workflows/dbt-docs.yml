@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - development
-    paths:
-      #only run if there are changes in dbt folder
-      - "dbt/**"
+    # paths:
+    #   #only run if there are changes in dbt folder
+    #   - "dbt/**"
 
 env:
   ENVIRONMENT: development
