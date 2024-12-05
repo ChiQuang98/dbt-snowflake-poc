@@ -144,4 +144,4 @@ select
 from {{ ref('crypto_investor_hub_current') }} investor 
 full outer join {{ ref('crypto_trader_hub_current') }} trader using (token_id)
 left join last_market using(token_id) left join token_start_date using(token_id)
-limit 1
+limit 2

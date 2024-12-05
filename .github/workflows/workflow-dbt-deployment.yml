@@ -25,35 +25,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Check for changes in airflow and dbt folders
+      - name: print environment
         id: check_changes
         run: |
-          git fetch origin ${{ github.base_ref }}:base-branch
-          # Check for changes in `airflow`
-          if git diff --quiet base-branch HEAD -- airflow/; then
-            echo "airflow_changed=false" >> $GITHUB_ENV
-          else
-            echo "airflow_changed=true" >> $GITHUB_ENV
-          fi
-          # Check for changes in `dbt`
-          if git diff --quiet base-branch HEAD -- dbt/; then
-            echo "dbt_changed=false" >> $GITHUB_ENV
-          else
-            echo "dbt_changed=true" >> $GITHUB_ENV
-          fi
-
-      - name: Deploy Changes for Airflow and DBT
-        run: |
-          if [ "${{ env.airflow_changed }}" == "true" ]; then
-            echo "Deploying changes for airflow folder..."
-            # Add Airflow deployment commands here
-          else
-            echo "No changes detected in airflow folder."
-          fi
-
-          if [ "${{ env.dbt_changed }}" == "true" ]; then
-            echo "Deploying changes for dbt folder..."
-            # Add DBT deployment commands here
-          else
-            echo "No changes detected in dbt folder."
-          fi
+          echo $ENVIRONMENT
