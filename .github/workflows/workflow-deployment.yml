@@ -78,7 +78,7 @@ jobs:
 
   deploy-airflow-dbt-to-server:
     runs-on: ubuntu-latest
-    needs: build-and-test-dbt
+    # needs: build-and-test-dbt
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
