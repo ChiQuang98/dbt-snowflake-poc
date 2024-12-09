@@ -11,20 +11,20 @@ models:
         tests:
           - unique:
               config:
-                severity: warn
+                severity: error
           - not_null:
               config:
-                severity: warn
+                severity: error
       - name: token_name
       - name: token_symbol
       - name: cg_id
         tests:
           - unique:
               config:
-                severity: warn
+                severity: error
           - not_null:
               config:
-                severity: warn
+                severity: error
       - name: token_url
       - name: is_stablecoin
       - name: summary
@@ -83,7 +83,7 @@ models:
     tests:
       - not_null_in_columns:
           tags: [data_completeness]
-          severity: warn
+          severity: error
           column_names:
             - timestamp
             - token_id

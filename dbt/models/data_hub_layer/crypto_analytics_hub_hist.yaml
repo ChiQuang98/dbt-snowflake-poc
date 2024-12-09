@@ -100,14 +100,14 @@ models:
     tests:
       - not_null_in_columns:
           tags: [data_completeness]
-          severity: warn
+          severity: error
           column_names:
             - date
             - token_id
             - cg_id
       - dbt_utils.unique_combination_of_columns:
           tags: [data_quality]
-          severity: warn
+          severity: error
           combination_of_columns:
             - date
             - token_id
