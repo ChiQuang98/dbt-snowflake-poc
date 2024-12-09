@@ -95,5 +95,13 @@ jobs:
         id: Transfer_dbt_Project
         run: |
           scp -r -i  ./credentials/ssh_private_key -o StrictHostKeyChecking=no  ./dbt github_action@34.133.120.178:/home/github_action
-          ssh -i ./credentials/ssh_private_key -o StrictHostKeyChecking=no  github_action@34.133.120.178
-          sudo cp -rf /home/github_action/dbt /home/andrew
+          # ssh -i ./credentials/ssh_private_key -o StrictHostKeyChecking=no  github_action@34.133.120.178
+          # sudo cp -rf /home/github_action/dbt /home/andrew
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 34.133.120.178
+          username: github_action
+          key: ./credentials/ssh_private_key
+          port: 22
+          script: whoami
