@@ -19,6 +19,7 @@ env:
   # ENVIRONMENT: if [ "${{ github.base_ref }}" == "development" ]; then echo "development"; else echo "production"; fi
         #   env:  # Pass the secret as an environment variable
   SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
 jobs:
   build-and-test-dbt:
@@ -82,7 +83,11 @@ jobs:
         working-directory: ./dbt
     steps:
 
-
+      - name: Decode and Save SSH Key
+        run: |
+          mkdir -p ./ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ./ssh/ssh_private_key
+          chmod 600 ./ssh/ssh_private_key
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -90,3 +95,7 @@ jobs:
         id: check_changes
         run: |
           echo $ENVIRONMENT
+      - name: Transfer dbt Project
+        id: Transfer dbt Project
+        run: |
+          scp -i ./ssh/ssh_private_key -o StrictHostKeyChecking=no -r ./dbt github_action@34.133.120.178:/home/andrew/
