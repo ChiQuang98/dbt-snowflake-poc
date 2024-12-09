@@ -95,4 +95,6 @@ jobs:
       - name: Transfer dbt Project
         id: Transfer_dbt_Project
         run: |
-          scp -i ./ssh/ssh_private_key -o StrictHostKeyChecking=no -r ./dbt github_action@34.133.120.178:/home/andrew/
+          scp -i ./ssh/ssh_private_key  ./dbt github_action@34.133.120.178:/home/github_action/
+          ssh -i ./ssh/ssh_private_key github_action@34.133.120.178
+          sudo mv /home/github_action/dbt /home/andrew/
