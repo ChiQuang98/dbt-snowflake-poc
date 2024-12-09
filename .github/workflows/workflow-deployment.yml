@@ -79,18 +79,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-test-dbt
     steps:
-
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Decode and Save SSH Key
+        id: Decode_SSH_Key
         run: |
           mkdir -p ./ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ./ssh/ssh_private_key
           chmod 600 ./ssh/ssh_private_key
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: print environment
         id: check_changes
         run: |
+          echo ./ssh/ssh_private_key
           echo $ENVIRONMENT
       - name: Transfer dbt Project
         id: Transfer_dbt_Project
