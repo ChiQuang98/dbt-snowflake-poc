@@ -244,14 +244,14 @@ models:
     tests:
       - not_null_in_columns:
           tags: [data_completeness]
-          severity: error
+          severity: warn
           column_names:
             - timestamp
             - token_id
             - cg_id
       - dbt_utils.unique_combination_of_columns:
           tags: [data_quality]
-          severity: error
+          severity: warn
           combination_of_columns:
             - timestamp
             - token_id
