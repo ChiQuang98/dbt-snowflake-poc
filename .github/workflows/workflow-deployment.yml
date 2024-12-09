@@ -106,8 +106,8 @@ jobs:
           username: github_action
           port: ${{ secrets.SSH_PRIVATE_KEY_PLAIN }}
           key: 22
-          source: /home/github_action/dbt
-          target: /home/andrew
+          source: ./dbt
+          target: /home/github_action
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v1.2.0
         with:
