@@ -105,4 +105,6 @@ jobs:
           username: github_action
           key: ${{ secrets.SSH_PRIVATE_KEY_PLAIN }}
           port: 22
-          script: whoami
+          script: |
+              sudo su
+              sudo cp -rf /home/github_action/dbt /home/andrew
