@@ -1,7 +1,9 @@
 name: Deploy Airflow/DBT to server
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - development
       - main
