@@ -104,8 +104,8 @@ jobs:
         with:
           host: 34.133.120.178
           username: github_action
-          port: ${{ secrets.SSH_PRIVATE_KEY_PLAIN }}
-          key: 22
+          port: 22
+          key: ${{ secrets.SSH_PRIVATE_KEY_PLAIN }}
           source: ./dbt
           target: /home/github_action
       - name: executing remote ssh commands using ssh key
