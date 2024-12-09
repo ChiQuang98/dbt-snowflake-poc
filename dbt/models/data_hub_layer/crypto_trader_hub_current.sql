@@ -1,7 +1,6 @@
 {{
   config(
     materialized = 'table',
-    unique_key = ['TOKEN_ID','DATE'],
     cluster_by = ['TOKEN_ID','DATE'],
     tags = ['DATA_HUB_LAYER','hourly']
   )
