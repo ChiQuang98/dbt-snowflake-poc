@@ -1,0 +1,41 @@
+name: Deploy Airflow to server
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - development
+      - main
+    paths:
+      #only run if there are changes in dbt folder
+      - "airflow/**"
+      - ".github/workflows/**"
+
+jobs:
+  deploy-airflow-to-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Transfer Airflow Dags to Server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: 34.133.120.178
+          username: github_action
+          port: 22
+          key: ${{ secrets.SSH_PRIVATE_KEY_PLAIN }}
+          source: ./airflow/dags/*.py
+          target: /home/github_action/dags/
+
+      - name: Moving DBT Project to Deployment Folder
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: 34.133.120.178
+          username: github_action
+          key: ${{ secrets.SSH_PRIVATE_KEY_PLAIN }}
+          port: 22
+          script: |
+              sudo su
+              sudo cp -rf /home/github_action/dags/*.py /home/andrew/dags/
