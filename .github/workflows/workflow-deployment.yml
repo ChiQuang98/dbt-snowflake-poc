@@ -96,4 +96,4 @@ jobs:
         run: |
           scp -r -i  ./credentials/ssh_private_key -o StrictHostKeyChecking=no  ./dbt github_action@34.133.120.178:/home/github_action
           ssh -i ./credentials/ssh_private_key -o StrictHostKeyChecking=no  github_action@34.133.120.178
-          sudo mv /home/github_action/dbt/ /home/andrew/
+          sudo cp -rf /home/github_action/dbt /home/andrew
