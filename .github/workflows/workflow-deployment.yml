@@ -84,17 +84,17 @@ jobs:
       - name: Decode and Save SSH Key
         id: Decode_SSH_Key
         run: |
-          mkdir -p ./ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ./ssh/ssh_private_key
-          chmod 600 ./ssh/ssh_private_key
+          mkdir -p ~/ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 -d > ~/ssh/ssh_private_key
+          chmod 600 ~/ssh/ssh_private_key
       - name: print environment
         id: check_changes
         run: |
-          echo ./ssh/ssh_private_key
+          echo ~/ssh/ssh_private_key
           echo $ENVIRONMENT
       - name: Transfer dbt Project
         id: Transfer_dbt_Project
         run: |
-          scp -i ./ssh/ssh_private_key  ./dbt github_action@34.133.120.178:/home/github_action/
-          ssh -i ./ssh/ssh_private_key github_action@34.133.120.178
+          scp -i ~/ssh/ssh_private_key  ./dbt github_action@34.133.120.178:/home/github_action/
+          ssh -i ~/ssh/ssh_private_key github_action@34.133.120.178
           sudo mv /home/github_action/dbt /home/andrew/
