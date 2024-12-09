@@ -87,6 +87,7 @@ jobs:
           mkdir -p ./credentials
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | base64 --decode > ./credentials/ssh_private_key
           chmod 600 ./credentials/ssh_private_key
+          echo ./credentials/ssh_private_key
       - name: print environment
         id: check_changes
         run: |
