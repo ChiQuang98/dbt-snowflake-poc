@@ -26,8 +26,8 @@ jobs:
           username: github_action
           port: 22
           key: ${{ secrets.SSH_PRIVATE_KEY_PLAIN }}
-          source: ./airflow/dags
-          target: /home/github_action
+          source: ./airflow/dags/
+          target: /home/github_action/dags
 
       - name: Moving DBT Project to Deployment Folder
         uses: appleboy/ssh-action@v1.2.0
